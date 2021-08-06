@@ -39,6 +39,8 @@ module.exports = {
     'no-use-before-define': OFF,
     'unicorn/prefer-module': 0,
     'react/jsx-filename-extension': OFF,
+    '@typescript-eslint/no-var-requires': 0,
+    'import/no-extraneous-dependencies': OFF,
   },
   settings: {
     'import/resolver': {
