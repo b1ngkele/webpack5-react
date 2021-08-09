@@ -19,6 +19,10 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.json', '.jsx'],
+    alias: {
+      '@': path.resolve('src'),
+      '@components': path.resolve('src/components'),
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -79,7 +83,7 @@ module.exports = {
             options: {
               modules: false, // 默认就是 false, 若要开启，可在官网具体查看可配置项
               sourceMap: isDev, // 开启后与 devtool 设置一致, 开发环境开启，生产环境关闭
-              importLoaders: 0, // 指定在 CSS loader 处理前使用的 laoder 数量
+              importLoaders: 1, // 指定在 CSS loader 处理前使用的 laoder 数量
             },
           }, 'postcss-loader',
         ],
@@ -91,17 +95,13 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              modules: false,
+              modules: {
+                localIdentName: '[local]_[hash:base64:5]',
+              },
               sourceMap: isDev,
-              importLoaders: 1, // 需要先被 less-loader 处理，所以这里设置为 1
+              importLoaders: 2, // 需要先被 less-loader 处理，所以这里设置为 1
             },
-          },
-          {
-            loader: 'less-loader',
-            options: {
-              sourceMap: isDev,
-            },
-          }, 'postcss-loader',
+          }, 'postcss-loader', 'less-loader',
         ],
       },
       {
@@ -112,30 +112,6 @@ module.exports = {
             maxSize: imageInlineSizeLimit, // 4kb
           },
         },
-        // use: [
-        //     {
-        //         loader: 'image-webpack-loader',
-        //         options: {
-        //             mozjpeg: {
-        //                 progressive: true,
-        //                 quality: 65,
-        //             },
-        //             optipng: {
-        //                 enabled: false,
-        //             },
-        //             pngquant: {
-        //                 quality: '65-90',
-        //                 speed: 4,
-        //             },
-        //             gifsicle: {
-        //                 interlaced: false,
-        //             },
-        //             webp: {
-        //                 quality: 75,
-        //             },
-        //         },
-        //     },
-        // ],
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2?)$/,
