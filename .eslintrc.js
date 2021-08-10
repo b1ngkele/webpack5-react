@@ -32,18 +32,27 @@ module.exports = {
     // '@typescript-eslint',
   ],
   rules: {
-    'import/extensions': 0,
+    'import/extensions': OFF,
     'linebreak-style': ['off', 'windows'],
     '@typescript-eslint/explicit-module-boundary-types': OFF,
     'no-console': OFF,
     'no-use-before-define': OFF,
-    'unicorn/prefer-module': 0,
+    'unicorn/prefer-module': OFF,
     'react/jsx-filename-extension': OFF,
-    '@typescript-eslint/no-var-requires': 0,
+    '@typescript-eslint/no-var-requires': OFF,
     'import/no-extraneous-dependencies': OFF,
+    'import/no-unresolved': [OFF, { ignore: ['antd'] }],
+    'unicorn/filename-case': OFF,
   },
   settings: {
     'import/resolver': {
+      alias: {
+        map: [
+          ['@', './src'],
+          ['@components', './src/components'],
+        ],
+        extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
+      },
       node: {
         paths: ['src'],
         extensions: ['.tsx', '.ts', '.js', '.json', '.jsx'],
