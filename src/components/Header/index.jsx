@@ -4,7 +4,6 @@ import { Layout, Menu } from 'antd';
 const { Header } = Layout;
 
 const HeaderWrapprer = () => {
-  const [menu, setMeun] = useState();
   return (
     <Header className="header">
       <div className="logo" />
