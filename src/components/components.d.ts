@@ -3,12 +3,29 @@
  * @Description:
  * @Date: 2021-08-11 16:41:18
  * @LastEditors: y2029
- * @LastEditTime: 2021-08-12 10:47:59
+ * @LastEditTime: 2021-08-13 10:01:46
  */
 interface Location {
   pathname: string;
 }
 
-export interface Props {
-  location: Location
+interface Children {
+  title: string;
+  path: string;
+  icon: string;
+  isPublic?: boolean;
 }
+interface Props {
+  location: Location;
+  menuList?: any;
+}
+
+interface MenuItem {
+  title: string;
+  path: string;
+  icon: string;
+  isPublic?: boolean;
+  children?: Children[];
+}
+
+export { Props, MenuItem };

@@ -3,24 +3,23 @@
  * @Description:
  * @Date: 2021-08-10 16:17:49
  * @LastEditors: y2029
- * @LastEditTime: 2021-08-12 14:20:11
+ * @LastEditTime: 2021-08-13 10:07:59
  */
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { Layout, Menu } from 'antd';
 import { withRouter, Link } from 'react-router-dom';
 import { UserOutlined } from '@ant-design/icons';
-import menuList from '../../mock/menu';
-import { Props } from '../components';
+import { connect } from 'dva';
+import { Props, MenuItem } from '../components';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
-let openKey = '/products';
+
 const SilderMenu = (props: Props) => {
-  const { location } = props;
+  const { location, menuList } = props;
   const { pathname } = location;
-  const [key, setKey] = useState<string>('');
-  const getMenuNodes = useCallback((list: any) => {
-    return list.map((item: any) => {
+  const getMenuNodes = useCallback((list: MenuItem[]) => {
+    return list.map((item: MenuItem) => {
       if (!item.children) {
         return (
           <Menu.Item key={item.path} icon={<UserOutlined />}>
@@ -34,15 +33,7 @@ const SilderMenu = (props: Props) => {
           </Menu.Item>
         );
       }
-      // 查找一个与当前请求路径匹配的子Item
-      const cItem = item.children.find((cItem: any) => {
-        return pathname.indexOf(cItem.path) === 0;
-      });
 
-      // 如果存在, 说明当前item的子列表需要打开
-      if (cItem) {
-        openKey = item.path;
-      }
       return (
         <SubMenu
           icon={<UserOutlined />}
@@ -57,16 +48,12 @@ const SilderMenu = (props: Props) => {
     });
   }, []);
 
-  useEffect(() => {
-    setKey(openKey);
-  }, [openKey]);
-
   return (
     <Sider width={200} className="site-layout-background">
       <Menu
         mode="inline"
         selectedKeys={[pathname]}
-        defaultOpenKeys={[key]}
+        defaultOpenKeys={[`/${pathname.split('/')[1]}`]}
         style={{ height: '100%', borderRight: 0 }}
       >
         {getMenuNodes(menuList)}
@@ -75,4 +62,11 @@ const SilderMenu = (props: Props) => {
   );
 };
 
-export default withRouter(SilderMenu);
+const mapStateToProps = (state: any) => {
+  const { global: { menuList } } = state;
+  return {
+    menuList,
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(SilderMenu));

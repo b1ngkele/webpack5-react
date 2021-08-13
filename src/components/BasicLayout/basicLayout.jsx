@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Layout } from 'antd';
 import HeaderWrapper from '../Header';
 import SilderMenu from '../SilderMenu';
@@ -6,7 +6,6 @@ import Content from '../Content';
 import Breadcrumb from '../Breadcrumb';
 
 const BasicLayout = () => {
-  const [menu, setMeun] = useState();
   return (
     <Layout style={{ height: '100%' }}>
       <HeaderWrapper />

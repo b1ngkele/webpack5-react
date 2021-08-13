@@ -992,6 +992,13 @@
     core-js "^2.5.3"
     regenerator-runtime "^0.11.1"
 
+"@babel/runtime@^7.0.0":
+  version "7.15.3"
+  resolved "http://registry.reta-develop.dophz.dtdream.com/@babel%2fruntime/-/runtime-7.15.3.tgz#2e1c2880ca118e5b2f9988322bd8a7656a32502b"
+  integrity sha1-LhwogMoRjlsvmYgyK9inZWoyUCs=
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/runtime@^7.1.2", "@babel/runtime@^7.10.1", "@babel/runtime@^7.10.2", "@babel/runtime@^7.10.4", "@babel/runtime@^7.11.1", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   version "7.14.8"
   resolved "http://registry.reta-develop.dophz.dtdream.com/@babel%2fruntime/-/runtime-7.14.8.tgz#7119a56f421018852694290b9f9148097391b446"
@@ -2711,6 +2718,13 @@ dva-core@^1.4.0:
     redux "^3.7.1"
     redux-saga "^0.16.0"
     warning "^3.0.0"
+
+dva-loading@^3.0.22:
+  version "3.0.22"
+  resolved "http://registry.reta-develop.dophz.dtdream.com/dva-loading/-/dva-loading-3.0.22.tgz#c0dd2fb081492752b992d9ce2701b88825186e02"
+  integrity sha1-wN0vsIFJJ1K5ktnOJwG4iCUYbgI=
+  dependencies:
+    "@babel/runtime" "^7.0.0"
 
 dva@^2.4.1:
   version "2.4.1"
